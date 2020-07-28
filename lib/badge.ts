@@ -6,7 +6,13 @@ const STYLE_CANDIDATES = [
   "flat-square",
   "for-the-badge",
   "social",
-];
+] as const;
+
+type StyleType = typeof STYLE_CANDIDATES[number];
+
+const isValidStyle = (style: string): style is StyleType => {
+  return STYLE_CANDIDATES.includes(style as any);
+};
 
 type Option = {
   label: string;
@@ -15,9 +21,7 @@ type Option = {
 };
 
 export const getBadge = (option: Option) => {
-  const style = STYLE_CANDIDATES.includes(option.style)
-    ? option.style
-    : "plastic";
+  const style = isValidStyle(option.style) ? option.style : "plastic";
 
   return makeBadge({
     label: option.label,
