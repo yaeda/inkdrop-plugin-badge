@@ -1,12 +1,17 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
+import copy from "copy-to-clipboard";
 
 const Home = () => {
   const [name, setName] = useState("vim");
 
   const onChangePluginName = (event) => {
     setName(event.target.value);
+  };
+
+  const onClickToCopy = (event) => {
+    copy(event.target.textContent);
   };
 
   return (
@@ -34,26 +39,43 @@ const Home = () => {
           </div>
 
           <div className={styles.card}>
-            <h3>Version Badge</h3>
-            <img
-              src={`https://inkdrop-plugin-badge.vercel.app/api/version/${name}`}
-            />
+            <h3>Version Badge </h3>
             <p>
-              <code>
+              <img
+                src={`https://inkdrop-plugin-badge.vercel.app/api/version/${name}`}
+              />
+            </p>
+            <p>
+              <code className={styles.code} onClick={onClickToCopy}>
                 https://inkdrop-plugin-badge.vercel.app/api/version/{name}
+              </code>
+            </p>
+            <p>
+              <code className={styles.code} onClick={onClickToCopy}>
+                ![Inkdrop Plugin
+                Version](https://inkdrop-plugin-badge.vercel.app/api/version/
+                {name})
               </code>
             </p>
           </div>
 
           <div className={styles.card}>
-            <h3>Downloads Badge</h3>
-            <img
-              src={`https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}`}
-            />
-
+            <h3>Downloads Badge </h3>
             <p>
-              <code>
+              <img
+                src={`https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}`}
+              />
+            </p>
+            <p>
+              <code className={styles.code} onClick={onClickToCopy}>
                 https://inkdrop-plugin-badge.vercel.app/api/downloads/{name}
+              </code>
+            </p>
+            <p>
+              <code className={styles.code} onClick={onClickToCopy}>
+                ![Inkdrop Plugin
+                Downloads](https://inkdrop-plugin-badge.vercel.app/api/downloads/
+                {name})
               </code>
             </p>
           </div>
@@ -77,7 +99,6 @@ const Home = () => {
           <img
             src="https://unpkg.com/simple-icons@3.3.0/icons/github.svg"
             alt="GitHub Logo"
-            className={styles.logo}
           />
         </a>
       </footer>
