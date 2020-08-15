@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 
 const Home = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState("vim");
 
   const onChangePluginName = (event) => {
     setName(event.target.value);
