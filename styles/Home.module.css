@@ -99,6 +99,7 @@
 }
 
 .card {
+  width: 100%;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -127,3 +128,34 @@
   border-radius: 5px;
   padding: 0.5rem 0.75rem;
 }
+
+.card .selection {
+  display: flex;
+}
+
+.card .selection input {
+  display: none;
+}
+
+.card .selection label {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid gray;
+  padding: 0.5rem;
+}
+
+.card .selection label:first-of-type {
+  border-radius: 6px 0 0 6px;
+}
+.card .selection label:last-of-type {
+  border-radius: 0 6px 6px 0;
+}
+
+.card .selection input:checked + label {
+  border-color: #0070f3;
+  background-color: #0070f3;
+  color: white;
+}
+

@@ -3,8 +3,18 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import copy from "copy-to-clipboard";
 
+const STYLE_NAMES = {
+  default: "default (= plastic)",
+  plastic: "plastic",
+  flat: "flat",
+  "flat-square": "flat-square",
+  "for-the-badge": "for-the-badge",
+  social: "social",
+};
+
 const Home = () => {
   const [name, setName] = useState("vim");
+  const [badgeStyle, setBadgeStyle] = useState("default");
 
   const onChangePluginName = (event) => {
     setName(event.target.value);
@@ -13,6 +23,22 @@ const Home = () => {
   const onClickToCopy = (event) => {
     copy(event.target.textContent);
   };
+
+  const onSelectionChanged = (style) => {
+    return () => {
+      setBadgeStyle(style);
+    };
+  };
+
+  const versionUrl =
+    badgeStyle === "default"
+      ? `https://inkdrop-plugin-badge.vercel.app/api/version/${name}`
+      : `https://inkdrop-plugin-badge.vercel.app/api/version/${name}&style=${badgeStyle}`;
+
+  const downloadsUrl =
+    badgeStyle === "default"
+      ? `https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}`
+      : `https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}&style=${badgeStyle}`;
 
   return (
     <div className={styles.container}>
@@ -32,29 +58,46 @@ const Home = () => {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>Plugin Name</h3>
+            <h3>Configuration</h3>
+            <p>Plugin Name</p>
             <p>
               <input type="text" value={name} onChange={onChangePluginName} />
+            </p>
+            <p>Badge Style</p>
+            <p className={styles.selection}>
+              {Object.keys(STYLE_NAMES).map((name) => {
+                return (
+                  <>
+                    <input
+                      key={`style-${name}-input`}
+                      type="radio"
+                      name="style-selection"
+                      id={`style-${name}`}
+                      checked={badgeStyle === name}
+                      onChange={onSelectionChanged(name)}
+                    />
+                    <label key={`style-${name}-label`} for={`style-${name}`}>
+                      {STYLE_NAMES[name]}
+                    </label>
+                  </>
+                );
+              })}
             </p>
           </div>
 
           <div className={styles.card}>
             <h3>Version Badge </h3>
             <p>
-              <img
-                src={`https://inkdrop-plugin-badge.vercel.app/api/version/${name}`}
-              />
+              <img src={versionUrl} />
             </p>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
-                https://inkdrop-plugin-badge.vercel.app/api/version/{name}
+                {versionUrl}
               </code>
             </p>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
-                ![Inkdrop Plugin
-                Version](https://inkdrop-plugin-badge.vercel.app/api/version/
-                {name})
+                ![Inkdrop Plugin Version]({versionUrl})
               </code>
             </p>
           </div>
@@ -62,20 +105,16 @@ const Home = () => {
           <div className={styles.card}>
             <h3>Downloads Badge </h3>
             <p>
-              <img
-                src={`https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}`}
-              />
+              <img src={downloadsUrl} />
             </p>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
-                https://inkdrop-plugin-badge.vercel.app/api/downloads/{name}
+                {downloadsUrl}
               </code>
             </p>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
-                ![Inkdrop Plugin
-                Downloads](https://inkdrop-plugin-badge.vercel.app/api/downloads/
-                {name})
+                ![Inkdrop Plugin Downloads]({downloadsUrl})
               </code>
             </p>
           </div>
