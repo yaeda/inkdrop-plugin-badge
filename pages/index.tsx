@@ -76,7 +76,10 @@ const Home = () => {
                       checked={badgeStyle === name}
                       onChange={onSelectionChanged(name)}
                     />
-                    <label key={`style-${name}-label`} for={`style-${name}`}>
+                    <label
+                      key={`style-${name}-label`}
+                      htmlFor={`style-${name}`}
+                    >
                       {STYLE_NAMES[name]}
                     </label>
                   </>
