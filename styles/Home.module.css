@@ -150,7 +150,9 @@
   text-align: center;
   cursor: pointer;
   user-select: none;
-  border: 1px solid gray;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px 0 1px 1px;
   padding: 0.5rem;
   transition: color 0.15s ease, background-color 0.15s ease,
     border-color 0.15s ease;
@@ -160,6 +162,7 @@
   border-radius: 6px 0 0 6px;
 }
 .card .selection label:last-of-type {
+  border-width: 1px;
   border-radius: 0 6px 6px 0;
 }
 
@@ -174,10 +177,15 @@
     flex-direction: column;
   }
 
+  .card .selection label {
+    border-width: 1px 1px 0 1px;
+  }
+
   .card .selection label:first-of-type {
     border-radius: 6px 6px 0 0;
   }
   .card .selection label:last-of-type {
+    border-width: 1px;
     border-radius: 0 0 6px 6px;
   }
 }
