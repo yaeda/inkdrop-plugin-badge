@@ -77,6 +77,7 @@
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
   user-select: none;
+  overflow-wrap: anywhere;
   transition: color 0.15s ease;
 }
 
@@ -87,6 +88,9 @@
   border-radius: 6px;
   font-size: 85%;
   cursor: pointer;
+  overflow-wrap: normal;
+  position: absolute;
+  right: 0.4rem;
 }
 
 .code:hover,
@@ -105,7 +109,6 @@
 }
 
 .card {
-  width: 100%;
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -149,6 +152,8 @@
   user-select: none;
   border: 1px solid gray;
   padding: 0.5rem;
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .card .selection label:first-of-type {
@@ -164,3 +169,15 @@
   color: white;
 }
 
+@media (max-width: 600px) {
+  .card .selection {
+    flex-direction: column;
+  }
+
+  .card .selection label:first-of-type {
+    border-radius: 6px 6px 0 0;
+  }
+  .card .selection label:last-of-type {
+    border-radius: 0 0 6px 6px;
+  }
+}
