@@ -76,6 +76,8 @@
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
+  user-select: none;
+  transition: color 0.15s ease;
 }
 
 .code:after {
@@ -84,12 +86,17 @@
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   font-size: 85%;
+  cursor: pointer;
 }
 
 .code:hover,
 .code:focus,
 .code:active {
   color: #0070f3;
+}
+
+.code:active:after {
+  content: "COPIED!";
 }
 
 .grid {
