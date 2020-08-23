@@ -58,12 +58,12 @@ const Home = () => {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h3>Configuration</h3>
-            <p>Plugin Name</p>
+            <h2>Configuration</h2>
+            <h3>Plugin Name</h3>
             <p>
               <input type="text" value={name} onChange={onChangePluginName} />
             </p>
-            <p>Badge Style</p>
+            <h3>Badge Style</h3>
             <p className={styles.selection}>
               {Object.keys(STYLE_NAMES).map((name) => {
                 return (
@@ -89,15 +89,17 @@ const Home = () => {
           </div>
 
           <div className={styles.card}>
-            <h3>Version Badge </h3>
+            <h2>Version Badge </h2>
             <p>
               <img src={versionUrl} />
             </p>
+            <h3>URL</h3>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
                 {versionUrl}
               </code>
             </p>
+            <h3>Markdown</h3>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
                 ![Inkdrop Plugin Version]({versionUrl})
@@ -106,15 +108,17 @@ const Home = () => {
           </div>
 
           <div className={styles.card}>
-            <h3>Downloads Badge </h3>
+            <h2>Downloads Badge </h2>
             <p>
               <img src={downloadsUrl} />
             </p>
+            <h3>URL</h3>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
                 {downloadsUrl}
               </code>
             </p>
+            <h3>Markdown</h3>
             <p>
               <code className={styles.code} onClick={onClickToCopy}>
                 ![Inkdrop Plugin Downloads]({downloadsUrl})

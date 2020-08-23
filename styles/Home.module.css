@@ -118,9 +118,13 @@
   border-radius: 10px;
 }
 
-.card h3 {
+.card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+}
+
+.card h3 {
+  font-weight: normal;
 }
 
 .card p,
