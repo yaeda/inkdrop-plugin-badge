@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import copy from "copy-to-clipboard";
 
 const STYLE_NAMES = {
@@ -67,22 +67,16 @@ const Home = () => {
             <p className={styles.selection}>
               {Object.keys(STYLE_NAMES).map((name) => {
                 return (
-                  <>
+                  <Fragment key={`style-${name}`}>
                     <input
-                      key={`style-${name}-input`}
                       type="radio"
                       name="style-selection"
                       id={`style-${name}`}
                       checked={badgeStyle === name}
                       onChange={onSelectionChanged(name)}
                     />
-                    <label
-                      key={`style-${name}-label`}
-                      htmlFor={`style-${name}`}
-                    >
-                      {STYLE_NAMES[name]}
-                    </label>
-                  </>
+                    <label htmlFor={`style-${name}`}>{STYLE_NAMES[name]}</label>
+                  </Fragment>
                 );
               })}
             </p>
