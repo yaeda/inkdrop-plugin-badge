@@ -33,12 +33,12 @@ const Home = () => {
   const versionUrl =
     badgeStyle === "default"
       ? `https://inkdrop-plugin-badge.vercel.app/api/version/${name}`
-      : `https://inkdrop-plugin-badge.vercel.app/api/version/${name}&style=${badgeStyle}`;
+      : `https://inkdrop-plugin-badge.vercel.app/api/version/${name}?style=${badgeStyle}`;
 
   const downloadsUrl =
     badgeStyle === "default"
       ? `https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}`
-      : `https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}&style=${badgeStyle}`;
+      : `https://inkdrop-plugin-badge.vercel.app/api/downloads/${name}?style=${badgeStyle}`;
 
   return (
     <div className={styles.container}>
